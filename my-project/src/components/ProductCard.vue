@@ -1,40 +1,28 @@
 <template>
-  <div class="product">
-    <div class="product-image">
-      <img :src="image" :alt="title"/>
-    </div>
-    <div class="product-info">
-      <h1>{{ title }}</h1>
-      <p>{{ description }}</p>
-      <p>{{ price }} руб.</p>
-      <button @click="addToCart" :disabled="!inStock">Add to cart</button>
-    </div>
+  <div class="product-card">
+    <h2>{{ product.name }}</h2>
+    <p>{{ product.description }}</p>
+    <p>Цена: {{ product.price }} руб.</p>
+    <button @click="$emit('add-to-cart', product.id)">Добавить в корзину</button>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    id: Number,
-    title: String,
-    description: String,
-    price: Number,
-    image: String,
-    inStock: Boolean,
-  },
-  methods: {
-    addToCart() {
-      this.$emit('add-to-cart', this.id);
+    product: {
+      type: Object,
+      required: true,
     },
   },
 };
 </script>
 
-<style scoped>
-.product {
+<style>
+.product-card {
   border: 1px solid #ccc;
   padding: 10px;
-  margin: 10px;
   width: 200px;
+  text-align: center;
 }
 </style>
