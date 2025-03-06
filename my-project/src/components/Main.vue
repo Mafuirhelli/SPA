@@ -56,7 +56,15 @@
         </div>
       </div>
     </div>
-
+    <div class="jew-section">
+      <div class="welcome-text">
+        <h1>Наш гендиректор</h1>
+        <p>
+          Сделано евреями - для евреев. Из евреев
+        </p>
+      </div>
+      <img src="@/assets/jew.gif" alt="Наш евгейний" class="hero-image" />
+    </div>
     <!-- Контакты -->
     <div class="contact-section">
       <h2>Контакты</h2>
@@ -119,6 +127,7 @@ export default {
 </script>
 
 <style scoped>
+
 h2{
   font-family: "Hummus";
   color: #007bff;
@@ -142,6 +151,7 @@ h2{
 
 .welcome-text p {
   color: #666;
+  font-weight: bold;
 }
 
 .shop-now-button {
@@ -196,6 +206,7 @@ h2{
 
 .testimonial-card p {
   font-style: italic;
+  font-weight: bold;
   color: #555;
 }
 
@@ -207,5 +218,6 @@ h2{
 
 .contact-section p {
   color: #666;
+  font-weight: bold;
 }
 </style>

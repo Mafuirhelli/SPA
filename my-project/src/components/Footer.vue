@@ -65,6 +65,7 @@ export default {
   background-color: lightslategray;
   color: whitesmoke;
   padding: 20px;
+  font-weight: bold;
   text-align: center;
   border-top: 1px solid #e0e0e0;
 }
@@ -91,6 +92,7 @@ li{
 
 .footer-section p {
   color: whitesmoke;
+  font-weight: bold;
 }
 
 .social-links a {
