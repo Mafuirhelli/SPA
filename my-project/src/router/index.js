@@ -1,33 +1,68 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import Catalog from '@/views/Catalog.vue';
-import Registration from '@/views/Registration.vue';
-import Authentication from '@/views/Authentication.vue';
-import Cart from '@/views/Cart.vue';
-import Orders from '@/views/Orders.vue';
+import store from '../store';
 
-Vue.use(Router);
+import { createRouter, createWebHistory } from 'vue-router';
 
-const router = new Router({
-    mode: 'history',
-    routes: [
-        { path: '/', component: Catalog },
-        { path: '/register', component: Registration },
-        { path: '/login', component: Authentication },
-        { path: '/cart', component: Cart, meta: { requiresAuth: true } },
-        { path: '/orders', component: Orders, meta: { requiresAuth: true } },
-    ],
-});
-
-router.beforeEach((to, from, next) => {
-    const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
-    const isAuthenticated = !!router.app.$store.state.user;
-
-    if (requiresAuth && !isAuthenticated) {
-        next('/login');
-    } else {
+const ifNotAuthenticated = (to, from, next) => {
+    if (!store.getters.isAuthenticated) {
         next();
+        return;
     }
+    next('/');
+};
+
+const ifAuthenticated = (to, from, next) => {
+    if (store.getters.isAuthenticated) {
+        next();
+        return;
+    }
+    next('/login');
+};
+
+const routes = [
+    {
+        path: '/',
+        name: 'home',
+        component: () => import('../App.vue'),
+
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: () => import('../components/Login.vue'),
+        beforeEnter: ifNotAuthenticated,
+    },
+    {
+        path: '/products',
+        name: 'Products',
+        component: () => import('../components/ProductsList.vue'),
+
+    },
+    {
+        path: '/signup',
+        name: 'Signup',
+        component: () => import('../components/Register.vue'),
+        beforeEnter: ifNotAuthenticated,
+    },
+
+    {
+        path: '/cart',
+        name: 'Cart',
+        component: () => import('../components/Cart.vue'),
+    },
+    {
+        path: '/orders',
+        name: 'Orders',
+        component: () => import('../components/Orders.vue'),
+    },
+    {
+        path: '/main',
+        name: 'Main',
+        component: () => import('../components/Main.vue'),
+    },
+];
+const router = createRouter({
+    history: createWebHistory(process.env.BASE_URL),
+    routes,
 });
 
 export default router;

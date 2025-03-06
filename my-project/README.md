@@ -1,14 +1,19 @@
-# Single Page Application «Просто купить»
-Здравствуйте, Илья Вадимович! не особо понял какую именно инструкцию надо
-Но... вот что дал мне вебшторм как Readme, Надеюсь это то, что надо:
-## Установка проекта
+# my-app
+
+## Project setup
 ```
 npm install
 ```
 
-### Запуск
+### Compiles and hot-reloads for development
 ```
 npm run serve
 ```
 
+### Compiles and minifies for production
+```
+npm run build
+```
 
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).

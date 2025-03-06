@@ -1,56 +1,36 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Каталог</router-link> |
-      <router-link to="/cart">Корзина</router-link> |
-      <router-link to="/orders">Заказы</router-link> |
-      <template v-if="!user">
-        <router-link to="/login">Вход</router-link> |
-        <router-link to="/register">Регистрация</router-link>
-      </template>
-      <template v-else>
-        <a href="#" @click="logout">Выйти</a>
-      </template>
-    </nav>
-    <router-view />
+    <Header/>
+    <router-view/>
+    <Footer/>
   </div>
 </template>
 
 <script>
+import Header from './components/Header.vue';
+import Footer from "@/components/Footer.vue";
+
 export default {
-  computed: {
-    user() {
-      return this.$store.state.user;
-    },
-  },
-  methods: {
-    async logout() {
-      await this.$store.dispatch('logout');
-      this.$router.push('/');
-    },
-  },
+  components: {Footer, Header },
 };
 </script>
 
 <style>
+@font-face {
+  font-family: "Hummus";
+  src: url("assets/fonts/hummus.ttf");
+}
+body {
+  background-color: #f8f9fa;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+span{
+  color: #007bff;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  margin: 0 auto;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-nav {
-  margin-bottom: 20px;
-}
-
-nav a {
-  margin: 0 10px;
-  text-decoration: none;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
 }
 </style>
